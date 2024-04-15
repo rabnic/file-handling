@@ -107,6 +107,10 @@ public class FileHandler {
 				
 				File f3 = new File(rootDirectory + fileName + ".txt");
 				
+				if(!f3.exists()) {
+					System.out.print("**File name is either incorrect  or file does not exist! ");
+				}
+				
 				f3.delete();
 				
 				
