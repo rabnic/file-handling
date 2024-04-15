@@ -8,70 +8,73 @@ import java.util.Scanner;
 public class FileHandler {
 
 	public static void main(String[] args) throws IOException {
-		Scanner sc= new Scanner(System.in);
-		int ch;
-		String fname;
+		Scanner scanner = new Scanner(System.in);
+		String rootDirectory = System.getProperty("user.dir") + "\\testFiles\\"; // 
+		//System.out.println(rootDirectory);
+		int choice;
+		String fileName;
 		do
+			
 		{
+			System.out.println("***************************************************");
+			System.out.println("*                                                 *");
+			System.out.println("*           File Handling Application             *");
+			System.out.println("*                                                 *");
+			System.out.println("*               Nicholas Rabalao                  *");
+			System.out.println("*           Java Full Stack Developer             *");
+			System.out.println("*                                                 *");
+			System.out.println("***************************************************");
 			
-			System.out.println("----------------************----------------");
+			System.out.println("Operations:");
+			System.out.println("  1. File creation");
+			System.out.println("  2. Write in the file ");
+			System.out.println("  3. Reading a file ");
+			System.out.println("  4. Delete the file ");
+			System.out.println("  5. Search the file");
+			System.out.println("  6. List of Files ");
+			System.out.println("  7. Exit");
 			
-			System.out.println("__________Welcome to my Application_________");
-			System.out.println("______________Nicholas Rabalao__________________");
-			System.out.println("__________Java Full Stack Developer__________ ");
+			System.out.print("Enter your choice: ");
+			choice = scanner.nextInt();
 			
-			System.out.println("----------------************----------------");
-			
-			
-			System.out.println("operations");
-			System.out.println("1. File creation");
-			System.out.println("2. Write in the file ");
-			System.out.println("3. Reading a file ");
-			System.out.println("4. Delete the file ");
-			System.out.println("5. Search the file");
-			System.out.println("6. List of Files ");
-			System.out.println("7. Exit");
-			
-			System.out.println("enter your choice !!");
-			ch=sc.nextInt();
-			switch(ch)
+			switch(choice)
 			{
 			case 1:
 				
-				System.out.println("Enter the file name to create :");
+				System.out.print("Enter the file name to create: ");
 				
-				fname=sc.next();
+				fileName = scanner.next();
 				
-				File f = new File("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\"+fname+".txt");
+				File newFile = new File(rootDirectory + fileName + ".txt");
 				
 				
-				if(f.createNewFile())
+				if(newFile.createNewFile())
 				{
-					System.out.println("file created successfully !!");
+					System.out.println("File created successfully !!");
 				}
 				else
 				{
-					if(f.exists())
+					if(newFile.exists())
 					{
 						System.out.println("File already exist");
 					}
 					else
 					{
-						System.out.println("error in creating the file !!");
+						System.out.println("Error in creating the file !!");
 					}
 				}
 				break;
 			case  2:
 				
-				System.out.println("Enter the file name where you wanna write !");
-				fname=sc.next();
+				System.out.print("Enter the file name where you wanna write: ");
+				fileName = scanner.next();
 				
 				Scanner sc1= new Scanner(System.in);
 				
-				System.out.println("Enter the content you wanna write in a file !!");
-				String content=sc1.nextLine();
+				System.out.print("Enter the content you wanna write in a file: ");
+				String content = sc1.nextLine();
 				
-				FileWriter fw = new FileWriter("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\"+fname+".txt");
+				FileWriter fw = new FileWriter(rootDirectory + fileName + ".txt");
 				fw.write(content);
 				
 				System.out.println("Data Written in the file successfully !!");
@@ -80,10 +83,10 @@ public class FileHandler {
 				break;
 			case 3:
 				
-				System.out.println("Enter the file name whose data you wanna read !!");
-				fname=sc.next();
+				System.out.print("Enter the file name whose data you wanna read: ");
+				fileName=scanner.next();
 				
-				File f2= new File("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\"+fname+".txt");
+				File f2= new File(rootDirectory + fileName + ".txt");
 				Scanner sc2 = new Scanner(f2);
 				
 				while(sc2.hasNextLine())
@@ -99,16 +102,17 @@ public class FileHandler {
 				break;
 			case 4:
 				
-				System.out.println("Enter file name which you wanna delete ");
-				fname=sc.next();
+				System.out.print("Enter file name which you wanna delete: ");
+				fileName = scanner.next();
 				
-				File f3 = new File("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\"+fname+".txt");
+				File f3 = new File(rootDirectory + fileName + ".txt");
 				
 				f3.delete();
 				
-				if(f3.exists())
+				
+				if(!f3.exists())
 				{
-					System.out.println("File deleted uccessfully !!");
+					System.out.println("File deleted successfully !!");
 				}
 				else
 				{
@@ -118,25 +122,25 @@ public class FileHandler {
 				break;
 			case 5:
 				
-				System.out.println("Enter the file name for searching !!");
-				fname=sc.next();
+				System.out.print("Enter the file name to be searched (include file extension): ");
+				fileName=scanner.next();
 				
-				File f5 = new File("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\");
+				File f5 = new File(rootDirectory);
 				
 				String[] list = f5.list();
 				int fl=0;
 				if(list==null)
 				{
-					System.out.println("there is no file present in the directory !");
+					System.out.println("There is no file present in the directory !");
 				}
 				else
 				{
 					for(int i=0;i<list.length;i++)
 					{
 						String sfile= list[i];
-						if(sfile.equalsIgnoreCase(fname))
+						if(sfile.equalsIgnoreCase(fileName))
 						{
-							System.out.println("file found in the directory successfully!!");
+							System.out.println("File found in the directory successfully!!");
 						
 							fl=1;
 						}
@@ -144,7 +148,7 @@ public class FileHandler {
 					
 					if(fl==0)
 					{
-						System.out.println("file not found !");
+						System.out.println("File not found !");
 					}
 				}
 				
@@ -155,7 +159,7 @@ public class FileHandler {
 				
 				System.out.println("List of Files and Folders are :");
 				
-				File f6 = new File("C:\\Users\\LENOVO\\OneDrive\\Desktop\\filesop\\");
+				File f6 = new File(rootDirectory);
 				
 				File[] l1 = f6.listFiles();
 				
@@ -172,11 +176,12 @@ public class FileHandler {
 				}
 				break;
 			case 7:
-				System.out.println("Thankyou for using the Application ! ");
-				System.exit(ch);
+				System.out.println("Thank you for using the Application");
+				System.out.println("    ** Application closed **");
+				System.exit(choice);
 				break;
 			default:
-				System.out.println("enter the choice again !! ");
+				System.out.println("Please enter a valid operation choice! ");
 			}
 		}
 		while(true);
