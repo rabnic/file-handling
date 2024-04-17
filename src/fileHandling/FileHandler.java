@@ -109,6 +109,7 @@ public class FileHandler {
 				
 				if(!f3.exists()) {
 					System.out.print("**File name is either incorrect  or file does not exist! ");
+					break;
 				}
 				
 				f3.delete();
