@@ -9,23 +9,25 @@ public class FileHandler {
 
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
-		String rootDirectory = System.getProperty("user.dir") + "\\testFiles\\"; // 
-		//System.out.println(rootDirectory);
+		String rootDirectory = System.getProperty("user.dir") + "\\testFiles\\";
+		
 		int choice;
 		String fileName;
+		
+		
+		System.out.println("***************************************************");
+		System.out.println("*                                                 *");
+		System.out.println("*           File Handling Application             *");
+		System.out.println("*                                                 *");
+		System.out.println("*               Nicholas Rabalao                  *");
+		System.out.println("*           Java Full Stack Developer             *");
+		System.out.println("*                                                 *");
+		System.out.println("***************************************************");
+		
 		do
-			
 		{
-			System.out.println("***************************************************");
-			System.out.println("*                                                 *");
-			System.out.println("*           File Handling Application             *");
-			System.out.println("*                                                 *");
-			System.out.println("*               Nicholas Rabalao                  *");
-			System.out.println("*           Java Full Stack Developer             *");
-			System.out.println("*                                                 *");
-			System.out.println("***************************************************");
 			
-			System.out.println("Operations:");
+			System.out.println("\nOperations:");
 			System.out.println("  1. File creation");
 			System.out.println("  2. Write in the file ");
 			System.out.println("  3. Reading a file ");
@@ -183,6 +185,7 @@ public class FileHandler {
 			case 7:
 				System.out.println("Thank you for using the Application");
 				System.out.println("    ** Application closed **");
+				scanner.close();
 				System.exit(choice);
 				break;
 			default:
@@ -191,8 +194,11 @@ public class FileHandler {
 		}
 		while(true);
 		
-
+		
 
 	}
 
+	public void displayWelcomeMessage() {
+		
+	}
 }
